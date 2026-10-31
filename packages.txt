@@ -1,0 +1,12 @@
+# Пакеты репозиториев (pacman)
+niri
+noctalia
+alacritty
+nautilus
+micro
+xdg-desktop-portal
+xdg-desktop-portal-gnome
+xdg-desktop-portal-gtk
+xorg-xwayland
+git
+tela-circle-icon-theme-black

@@ -14,6 +14,8 @@ echo "==> Установка dotfiles из ${DOTFILES_DIR}..."
 mkdir -p "${HOME}/.config/niri"
 mkdir -p "${HOME}/.config/noctalia"
 mkdir -p "${HOME}/.config/alacritty"
+mkdir -p "${HOME}/.config/fish"
+mkdir -p "${HOME}/.config/micro"
 mkdir -p "${HOME}/.config/gtk-3.0"
 mkdir -p "${HOME}/.config/gtk-4.0"
 mkdir -p "${HOME}/.config/environment.d"
@@ -23,15 +25,18 @@ mkdir -p "${HOME}/.icons/default"
 mkdir -p "${HOME}/Изображения/Wallpapers"
 mkdir -p "${HOME}/Изображения/Screenshots"
 
-# 2. Копирование конфигураций .config
+# 2. Копирование конфигураций .config и шеллов
 echo "==> Копирование конфигураций..."
 cp -r "${DOTFILES_DIR}/.config/niri/"* "${HOME}/.config/niri/"
 cp "${DOTFILES_DIR}/.config/noctalia/config.toml" "${HOME}/.config/noctalia/"
 cp "${DOTFILES_DIR}/.config/alacritty/alacritty.toml" "${HOME}/.config/alacritty/"
+cp -r "${DOTFILES_DIR}/.config/fish/"* "${HOME}/.config/fish/"
+cp -r "${DOTFILES_DIR}/.config/micro/"* "${HOME}/.config/micro/"
 cp "${DOTFILES_DIR}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-3.0/"
 cp "${DOTFILES_DIR}/.config/gtk-4.0/settings.ini" "${HOME}/.config/gtk-4.0/"
 cp "${DOTFILES_DIR}/.config/environment.d/10-cursor.conf" "${HOME}/.config/environment.d/"
 cp "${DOTFILES_DIR}/.gtkrc-2.0" "${HOME}/.gtkrc-2.0"
+cp "${DOTFILES_DIR}/.bashrc" "${HOME}/.bashrc"
 
 # 3. Тема Noctalia и палитра
 echo "==> Настройка темы Noctalia..."
