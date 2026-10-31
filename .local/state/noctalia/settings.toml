@@ -1,5 +1,8 @@
 config_version = 16
 
+[location]
+auto_locate = true
+
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
