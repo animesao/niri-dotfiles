@@ -11,7 +11,10 @@
 | **Compositor** | [Niri](https://github.com/YaLTeR/niri) | Scrollable-tiling оконный менеджер Wayland |
 | **Shell / Bar** | [Noctalia](https://noctalia.dev) | Капсульная плавающая панель, виджеты, календарь |
 | **Цветовая палитра** | Custom `Monochrome` | Матовый титан (`#d8dadf`), стелс-чёрный (`#111317`) |
-| **Терминал** | [Alacritty](https://alacritty.org) | Прозрачность 0.8, палитра `#121417` / `#c0c4cc` |
+| **Терминал** | [Alacritty](https://alacritty.org) | Прозрачность 0.82, без рамок, отступы 18px, `MesloLGS Nerd Font` |
+| **Промпт** | [Starship](https://starship.rs) | Минималистичный стелс-промпт с ветками Git и иконками |
+| **Инфо-скрин** | [Fastfetch](https://github.com/fastfetch-cli/fastfetch) | Кастомный минималистичный вывод информации о системе |
+| **Шелл** | [Fish](https://fishshell.com) | Алиасы `eza` (иконки, дерево), `bat`, `zoxide` (умный `cd`) |
 | **Курсор** | MaidMintFantome (24px) | Аниме-курсор с форсированием для Xwayland/игр |
 | **Иконки** | Tela Circle Black Dark | Тёмно-графитовые папки и круглые иконки |
 | **Обои** | ASUS TUF Stealth Geometric | `assets/wallpapers/tuf_stealth.jpg` |
@@ -23,19 +26,25 @@
 ```text
 dotfiles/
 ├── .config/
-│   ├── alacritty/          # Настройки терминала (прозрачность, стелс-цвета)
+│   ├── alacritty/          # Настройки терминала (шрифт Nerd Font, стелс-цвета, отступы)
+│   ├── fastfetch/          # Кастомный конфиг Fastfetch со значками и лаконичным выводом
+│   ├── fish/               # Fish шелл с алиасами (eza, bat, git) и интеграцией starship
 │   ├── environment.d/      # Системные переменные курсора для systemd-сессии
 │   ├── gtk-3.0/            # Настройки GTK 3 (иконки, курсор, dark theme)
 │   ├── gtk-4.0/            # Настройки GTK 4 (libadwaita)
+│   ├── micro/              # Конфиг текстового редактора micro
 │   ├── niri/               # Модульная конфигурация Niri (cfg/*.kdl)
-│   └── noctalia/           # Конфигурация Noctalia Shell (панель, капсулы)
+│   ├── noctalia/           # Конфигурация Noctalia Shell (панель, капсулы)
+│   └── starship.toml       # Конфигурация Starship промпта в стиле TUF Stealth
 ├── .local/state/noctalia/  # Настройки темы и кастомная палитра Monochrome
 ├── assets/
 │   ├── wallpapers/         # Фирменные обои ASUS TUF
 │   └── icons/              # Пакет курсора MaidMintFantome
+├── .bashrc                 # Резервный Bash с переменными
 ├── .gtkrc-2.0              # GTK 2 темы
 ├── .icons/default/         # X11 / Xwayland дефолтный курсор
 ├── install.sh              # Скрипт автоматической установки и применения
+├── packages.txt            # Список пакетов
 └── README.md
 ```
 
@@ -60,6 +69,7 @@ cd ~/dotfiles
 | `Mod + Space` | Меню приложений (Noctalia Launcher) |
 | `Mod + Q` | Закрыть активное окно |
 | `Mod + F` | Развернуть окно на весь экран / вернуть размер |
+| `Mod + Shift + E` | Открыть текстовый редактор Micro |
 | `Win + Space` / `Alt + Shift` | Переключение раскладки клавиатуры (US / RU) |
 | `Ctrl + Shift + S` / `Print` | Скриншот области экрана |
 | `Mod + Print` | Скриншот всего экрана |
@@ -72,7 +82,6 @@ cd ~/dotfiles
 ## 📦 Необходимые пакеты (Arch / CachyOS)
 
 ```bash
-sudo pacman -S niri alacritty nautilus
-# Noctalia shell (установлен через репозиторий CachyOS / AUR)
+sudo pacman -S niri alacritty nautilus micro eza bat fzf
 yay -S noctalia
 ```

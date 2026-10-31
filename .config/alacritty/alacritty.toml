@@ -7,11 +7,12 @@ TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [window]
-dimensions = { columns = 100, lines = 30 }
+dimensions = { columns = 110, lines = 32 }
+padding = { x = 18, y = 16 }
 dynamic_padding = true
-decorations = "Full"
-opacity = 0.8
-title = "Alacritty@CachyOS"
+decorations = "None"
+opacity = 0.82
+title = "Alacritty"
 class = { instance = "Alacritty", general = "Alacritty" }
 decorations_theme_variant = "Dark"
 
@@ -20,68 +21,67 @@ history = 10000
 multiplier = 3
 
 [font]
-normal = { family = "monospace", style = "Regular" }
-bold = { family = "monospace", style = "Bold" }
-italic = { family = "monospace", style = "Italic" }
-bold_italic = { family = "monospace", style = "Bold Italic" }
-size = 12.0
+normal = { family = "MesloLGS Nerd Font", style = "Regular" }
+bold = { family = "MesloLGS Nerd Font", style = "Bold" }
+italic = { family = "MesloLGS Nerd Font", style = "Italic" }
+bold_italic = { family = "MesloLGS Nerd Font", style = "Bold Italic" }
+size = 11.5
 
 [colors]
 draw_bold_text_with_bright_colors = true
 
 [colors.primary]
-background = "0x121417"
-foreground = "0xE0E4EB"
+background = "0x0f1115"
+foreground = "0xd8dadf"
 
 [colors.normal]
-black = "0x1F2329"
-red = "0xEA6962"
-green = "0x89B482"
-yellow = "0xD8A657"
-blue = "0x7DAEA3"
-magenta = "0xD3869B"
-cyan = "0x89B4FA"
-white = "0xD3D7DF"
+black = "0x1b1e24"
+red = "0xe05555"
+green = "0x8fa876"
+yellow = "0xe5a952"
+blue = "0x7b9bb5"
+magenta = "0xb589b5"
+cyan = "0x68a5a8"
+white = "0xc5c8d0"
 
 [colors.bright]
-black = "0x323741"
-red = "0xEA6962"
-green = "0x89B482"
-yellow = "0xD8A657"
-blue = "0x7DAEA3"
-magenta = "0xD3869B"
-cyan = "0x89B4FA"
-white = "0xF0F3F8"
+black = "0x2e323b"
+red = "0xf06666"
+green = "0xa3bd8a"
+yellow = "0xf5b864"
+blue = "0x8fadcc"
+magenta = "0xc99ec9"
+cyan = "0x7bbec2"
+white = "0xf0f2f5"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 save_to_clipboard = true
 
 [cursor]
-style = { shape = "Underline", blinking = "Off" }
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
 unfocused_hollow = true
-thickness = 0.15
 
 [mouse]
 hide_when_typing = true
 bindings = [
-{ mouse = "Middle", mods = "None", action = "PasteSelection" },
+  { mouse = "Middle", mods = "None", action = "PasteSelection" },
 ]
 
 [keyboard]
 bindings = [
-{ key = "Paste", mods = "None", action = "Paste" },
-{ key = "Copy", mods = "None", action = "Copy" },
-{ key = "L", mods = "Control", action = "ClearLogNotice" },
-{ key = "L", mods = "Control", mode = "~Vi", chars = "\f" },
-{ key = "PageUp", mods = "Shift", mode = "~Alt", action = "ScrollPageUp" },
-{ key = "PageDown", mods = "Shift", mode = "~Alt", action = "ScrollPageDown" },
-{ key = "Home", mods = "Shift", mode = "~Alt", action = "ScrollToTop" },
-{ key = "End", mods = "Shift", mode = "~Alt", action = "ScrollToBottom" },
-{ key = "V", mods = "Control|Shift", action = "Paste" },
-{ key = "C", mods = "Control|Shift", action = "Copy" },
-{ key = "F", mods = "Control|Shift", action = "SearchForward" },
-{ key = "B", mods = "Control|Shift", action = "SearchBackward" },
-{ key = "C", mods = "Control|Shift", mode = "Vi", action = "ClearSelection" },
-{ key = "Key0", mods = "Control", action = "ResetFontSize" },
+  { key = "Paste", mods = "None", action = "Paste" },
+  { key = "Copy", mods = "None", action = "Copy" },
+  { key = "L", mods = "Control", action = "ClearLogNotice" },
+  { key = "L", mods = "Control", mode = "~Vi", chars = "\f" },
+  { key = "PageUp", mods = "Shift", mode = "~Alt", action = "ScrollPageUp" },
+  { key = "PageDown", mods = "Shift", mode = "~Alt", action = "ScrollPageDown" },
+  { key = "Home", mods = "Shift", mode = "~Alt", action = "ScrollToTop" },
+  { key = "End", mods = "Shift", mode = "~Alt", action = "ScrollToBottom" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "F", mods = "Control|Shift", action = "SearchForward" },
+  { key = "B", mods = "Control|Shift", action = "SearchBackward" },
+  { key = "Key0", mods = "Control", action = "ResetFontSize" },
 ]

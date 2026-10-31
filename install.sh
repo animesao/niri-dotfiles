@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # ASUS TUF Stealth Rice Installer
-# Setup: Niri + Noctalia Shell + Alacritty + Tela Icons + MaidMintFantome Cursor
+# Setup: Niri + Noctalia Shell + Alacritty + Fish/Starship + Tela Icons + MaidMintFantome Cursor
 # ==============================================================================
 
 set -e
@@ -11,11 +11,13 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "==> Установка dotfiles из ${DOTFILES_DIR}..."
 
 # 1. Создание необходимых директорий
+mkdir -p "${HOME}/.local/bin"
 mkdir -p "${HOME}/.config/niri"
 mkdir -p "${HOME}/.config/noctalia"
 mkdir -p "${HOME}/.config/alacritty"
 mkdir -p "${HOME}/.config/fish"
 mkdir -p "${HOME}/.config/micro"
+mkdir -p "${HOME}/.config/fastfetch"
 mkdir -p "${HOME}/.config/gtk-3.0"
 mkdir -p "${HOME}/.config/gtk-4.0"
 mkdir -p "${HOME}/.config/environment.d"
@@ -25,29 +27,42 @@ mkdir -p "${HOME}/.icons/default"
 mkdir -p "${HOME}/Изображения/Wallpapers"
 mkdir -p "${HOME}/Изображения/Screenshots"
 
-# 2. Копирование конфигураций .config и шеллов
+# 2. Установка Starship и Zoxide если отсутствуют
+if ! command -v starship &>/dev/null; then
+    echo "==> Установка Starship..."
+    curl -sS https://starship.rs/install.sh | sh -s -- -b "${HOME}/.local/bin" -y
+fi
+
+if ! command -v zoxide &>/dev/null; then
+    echo "==> Установка Zoxide..."
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
+# 3. Копирование конфигураций .config и шеллов
 echo "==> Копирование конфигураций..."
 cp -r "${DOTFILES_DIR}/.config/niri/"* "${HOME}/.config/niri/"
 cp "${DOTFILES_DIR}/.config/noctalia/config.toml" "${HOME}/.config/noctalia/"
 cp "${DOTFILES_DIR}/.config/alacritty/alacritty.toml" "${HOME}/.config/alacritty/"
 cp -r "${DOTFILES_DIR}/.config/fish/"* "${HOME}/.config/fish/"
 cp -r "${DOTFILES_DIR}/.config/micro/"* "${HOME}/.config/micro/"
+cp "${DOTFILES_DIR}/.config/fastfetch/config.jsonc" "${HOME}/.config/fastfetch/"
+cp "${DOTFILES_DIR}/.config/starship.toml" "${HOME}/.config/starship.toml"
 cp "${DOTFILES_DIR}/.config/gtk-3.0/settings.ini" "${HOME}/.config/gtk-3.0/"
 cp "${DOTFILES_DIR}/.config/gtk-4.0/settings.ini" "${HOME}/.config/gtk-4.0/"
 cp "${DOTFILES_DIR}/.config/environment.d/10-cursor.conf" "${HOME}/.config/environment.d/"
 cp "${DOTFILES_DIR}/.gtkrc-2.0" "${HOME}/.gtkrc-2.0"
 cp "${DOTFILES_DIR}/.bashrc" "${HOME}/.bashrc"
 
-# 3. Тема Noctalia и палитра
+# 4. Тема Noctalia и палитра
 echo "==> Настройка темы Noctalia..."
 cp "${DOTFILES_DIR}/.local/state/noctalia/settings.toml" "${HOME}/.local/state/noctalia/"
 cp "${DOTFILES_DIR}/.local/state/noctalia/community-palettes/Monochrome.json" "${HOME}/.local/state/noctalia/community-palettes/"
 
-# 4. Обои
+# 5. Обои
 echo "==> Установка обоев..."
 cp "${DOTFILES_DIR}/assets/wallpapers/tuf_stealth.jpg" "${HOME}/Изображения/Wallpapers/tuf_stealth.jpg"
 
-# 5. Курсор MaidMintFantome
+# 6. Курсор MaidMintFantome
 echo "==> Установка курсора MaidMintFantome..."
 cp -r "${DOTFILES_DIR}/assets/icons/MaidMintFantome" "${HOME}/.local/share/icons/"
 ln -sfn "${HOME}/.local/share/icons/MaidMintFantome" "${HOME}/.icons/MaidMintFantome"
@@ -58,7 +73,7 @@ mkdir -p "${HOME}/.local/share/icons/capitaine-cursors" "${HOME}/.icons/capitain
 ln -sfn "${HOME}/.local/share/icons/MaidMintFantome/cursors" "${HOME}/.local/share/icons/capitaine-cursors/cursors"
 ln -sfn "${HOME}/.local/share/icons/MaidMintFantome/cursors" "${HOME}/.icons/capitaine-cursors/cursors"
 
-# 6. Иконки Tela-circle-black-dark
+# 7. Иконки Tela-circle-black-dark
 if [ ! -d "${HOME}/.local/share/icons/Tela-circle-black-dark" ]; then
     echo "==> Скачивание и сборка Tela-circle иконок..."
     git clone --depth 1 https://github.com/vinceliuice/Tela-circle-icon-theme.git /tmp/tela-circle-install
@@ -66,14 +81,14 @@ if [ ! -d "${HOME}/.local/share/icons/Tela-circle-black-dark" ]; then
     rm -rf /tmp/tela-circle-install
 fi
 
-# 7. Применение тем в gsettings
+# 8. Применение тем в gsettings
 echo "==> Применение настроек интерфейса..."
 gsettings set org.gnome.desktop.interface cursor-theme 'MaidMintFantome'
 gsettings set org.gnome.desktop.interface cursor-size 24
 gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-black-dark'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-# 8. Перезагрузка служб при запущенной сессии
+# 9. Перезагрузка служб при запущенной сессии
 if command -v noctalia &>/dev/null; then
     echo "==> Обновление Noctalia..."
     noctalia msg wallpaper-set "${HOME}/Изображения/Wallpapers/tuf_stealth.jpg" 2>/dev/null || true
