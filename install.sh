@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # ASUS TUF Stealth Rice Installer
-# Setup: Niri + Noctalia Shell + Alacritty + Fish/Starship + Tela Icons + MaidMintFantome Cursor
+# Setup: Niri + Noctalia Shell + Alacritty + Fish/Starship + Tela Icons + MaidMintFantome Cursor + SDDM
 # ==============================================================================
 
 set -e
@@ -60,7 +60,7 @@ cp "${DOTFILES_DIR}/.local/state/noctalia/community-palettes/Monochrome.json" "$
 
 # 5. Обои
 echo "==> Установка обоев..."
-cp "${DOTFILES_DIR}/assets/wallpapers/tuf_stealth.jpg" "${HOME}/Изображения/Wallpapers/tuf_stealth.jpg"
+cp -r "${DOTFILES_DIR}/assets/wallpapers/"* "${HOME}/Изображения/Wallpapers/"
 
 # 6. Курсор MaidMintFantome
 echo "==> Установка курсора MaidMintFantome..."
@@ -99,6 +99,15 @@ fi
 if command -v niri &>/dev/null; then
     echo "==> Перезагрузка конфигурации Niri..."
     niri msg action load-config-file 2>/dev/null || true
+fi
+
+# 10. Опциональная установка SDDM темы (если есть sudo)
+if [ -f "${DOTFILES_DIR}/setup-sddm.sh" ]; then
+    echo ""
+    echo "----------------------------------------------------------"
+    echo " Для установки темы экрана входа (SDDM) выполните:"
+    echo "   sudo ${DOTFILES_DIR}/setup-sddm.sh"
+    echo "----------------------------------------------------------"
 fi
 
 echo "=========================================================="
