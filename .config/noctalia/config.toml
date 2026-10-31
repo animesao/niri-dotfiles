@@ -1,0 +1,23 @@
+[shell]
+polkit_agent = true
+
+[theme]
+pure_black_dark = true
+
+[bar.default]
+margin_edge = 6
+margin_ends = 12
+radius = 16
+background_opacity = 0.75
+capsule = true
+capsule_opacity = 0.85
+capsule_fill = "surface_container_highest"
+capsule_border_width = 1.0
+end = [
+    "media",
+    "tray",
+    "network",
+    "volume",
+    "control-center",
+    "session"
+]

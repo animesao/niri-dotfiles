@@ -1,0 +1,7 @@
+// ────────────── Output Configuration ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+
+output "HDMI-A-1" {
+    mode "1920x1080@60.000" // Philips 226V4
+    scale 1.0
+}
