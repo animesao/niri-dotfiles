@@ -15,6 +15,7 @@ capsule_fill = "surface_container_highest"
 capsule_border_width = 1.0
 end = [
     "media",
+    "clipboard",
     "tray",
     "network",
     "volume",
