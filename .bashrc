@@ -11,5 +11,5 @@ PS1='[\u@\h \W]\$ '
 . "$HOME/.cargo/env"
 
 # Cursor theme
-export XCURSOR_THEME="capitaine-cursors"
+export XCURSOR_THEME="MaidMintFantome"
 export XCURSOR_SIZE=24
