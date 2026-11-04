@@ -8,12 +8,12 @@
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_CURRENT_DESKTOP "niri"
         XDG_SESSION_TYPE "wayland"
-        XCURSOR_THEME "MaidMintFantome"
+        XCURSOR_THEME "capitaine-cursors"
         XCURSOR_SIZE "24"
     }
 
     cursor {
-        xcursor-theme "MaidMintFantome"
+        xcursor-theme "capitaine-cursors"
         xcursor-size 24
     }
 
